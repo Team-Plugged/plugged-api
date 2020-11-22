@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import asyncHandler from 'express-async-handler'
 import Patient from '../models/patientModel.js'
-import Doctor from '../models/doctorModel.js'
+import Hospital from '../models/hospitalModel.js'
 
 const protect = asyncHandler(async (req, res, next) => {
     let token
@@ -41,8 +41,17 @@ const patientAdmin = (req, res, next) => {
     }
 }
 
-const doctorAdmin = (req, res, next) => {
-    if(req.doctor && req.doctor.isAdmin) {
+const hospitalVerified = (req, res, next) => {
+    if(req.hospital && req.hospital.isVerified) {
+        next()
+    } else {
+        res.status(401)
+        throw new Error('Not yet Verified')
+    }
+}
+
+const hospitalAdmin = (req, res, next) => {
+    if(req.hospital && req.hospital.isAdmin) {
         next()
     } else {
         res.status(401)
@@ -50,4 +59,4 @@ const doctorAdmin = (req, res, next) => {
     }
 }
 
-export { protect, patientAdmin, doctorAdmin }
+export { protect, patientAdmin, hospitalAdmin, hospitalVerified }

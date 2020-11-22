@@ -4,6 +4,7 @@ import colors from 'colors'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 import patientRoutes from './routes/patientRoutes.js'
+import hospitalRoutes from './routes/hospitalRoutes.js'
 
 
 
@@ -23,7 +24,7 @@ app.get('/api', (req, res) => {
 })
 
 app.use('/api/patients', patientRoutes)
-
+app.use('/api/hospitals', hospitalRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
