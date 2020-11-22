@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import Patient from '../models/patientModel.js'
 
-// @desc    Auth user & get token
+// @desc    Auth patient & get token
 // @route   POST /api/patients/login
 // @access  Public
 const authPatient = asyncHandler(async (req, res) => {
@@ -15,10 +15,13 @@ const authPatient = asyncHandler(async (req, res) => {
         _id: patient._id,
         firstname: patient.firstname,
         lastname: patient.lastname,
-        gender: patient.gender,
-        genotype: patient.genotype,
-        address: patient.address,
+        image: patient.image,
         email: patient.email,
+        gender: patient.gender,
+        age: patient.age,
+        height: patient.height,
+        weight: patient.weight,
+        genotype: patient.genotype,
         isAdmin: patient.isAdmin,
         token: generateToken(patient._id),
       })
@@ -34,12 +37,14 @@ const authPatient = asyncHandler(async (req, res) => {
   const registerPatient = asyncHandler(async (req, res) => {
     const { 
         firstname, 
-        lastname, 
+        lastname,
+        image, 
         email, 
         gender,
         age,
+        height,
+        weight,
         genotype,
-        address,
         password } = req.body
   
     const patientExists = await Patient.findOne({ email })
@@ -51,12 +56,14 @@ const authPatient = asyncHandler(async (req, res) => {
   
     const patient = await Patient.create({
         firstname, 
-        lastname, 
+        lastname,
+        image, 
         email, 
         gender,
         age,
+        height,
+        weight,
         genotype,
-        address,
         password,
     })
   
@@ -65,9 +72,12 @@ const authPatient = asyncHandler(async (req, res) => {
         _id: patient._id,
         firstname: patient.firstname,
         lastname: patient.lastname,
+        image: patient.image,
         gender: patient.gender,
+        age: patient.age,
+        height: patient.height,
+        weight: patient.weight,
         genotype: patient.genotype,
-        address: patient.address,
         email: patient.email,
         isAdmin: patient.isAdmin,
         token: generateToken(patient._id),
@@ -89,10 +99,13 @@ const authPatient = asyncHandler(async (req, res) => {
         _id: patient._id,
         firstname: patient.firstname,
         lastname: patient.lastname,
-        gender: patient.gender,
-        genotype: patient.genotype,
-        address: patient.address,
+        image: patient.image,
         email: patient.email,
+        gender: patient.gender,
+        age: patient.age,
+        height: patient.height,
+        weight: patient.weight,
+        genotype: patient.genotype,
         isAdmin: patient.isAdmin,
       })
     } else {
@@ -110,13 +123,12 @@ const authPatient = asyncHandler(async (req, res) => {
     if (patient) {
       patient.firstname = req.body.firstname || patient.firstname
       patient.lastname = req.body.lastname || patient.lastname
+      patient.image = req.body.image || patient.image
       patient.email = req.body.email || patient.email
       patient.gender = req.body.gender || patient.gender
       patient.age = req.body.age || patient.age
-      patient.allergies = req.body.allergies || patient.allergies
-      patient.note = req.body.note || patient.note
-      patient.profile = req.body.profile || patient.profile
-      patient.healthRecords = req.body.healthRecords || patient.healthRecords
+      patient.height = req.body.height || patient.height
+      patient.weight = req.body.weight || patient.weight
       patient.genotype = req.body.genotype || patient.genotype
 
 
@@ -130,13 +142,12 @@ const authPatient = asyncHandler(async (req, res) => {
         _id: updatedPatient._id,
         firstname: updatedPatient.firstname,
         lastname: updatedPatient.lastname,
+        image: updatedPatient.image,
         gender: updatedPatient.gender,
         genotype: updatedPatient.genotype,
         age: updatedPatient.age,
-        allergies: updatedPatient.allergies,
-        note: updatedPatient.note,
-        profile: updatedPatient.profile,
-        healthRecords: updatedPatient.healthRecords,
+        height: updatedPatient.height,
+        weight: updatedPatient.weight,
         isAdmin: updatedPatient.isAdmin,
         token: generateToken(updatedPatient._id),
       })
@@ -169,8 +180,8 @@ const authPatient = asyncHandler(async (req, res) => {
     }
   })
   
-  // @desc    Get user by ID
-  // @route   GET /api/users/:id
+  // @desc    Get patient by ID
+  // @route   GET /api/patients/:id
   // @access  Private/Admin
   const getPatientById = asyncHandler(async (req, res) => {
     const patient = await Patient.findById(req.params.id).select('-password')
@@ -189,16 +200,15 @@ const authPatient = asyncHandler(async (req, res) => {
   const updatePatient = asyncHandler(async (req, res) => {
     const patient = await Patient.findById(req.params.id)
   
-    if (user) {
+    if (patient) {
         patient.firstname = req.body.firstname || patient.firstname
         patient.lastname = req.body.lastname || patient.lastname
+        patient.image = req.body.image || patient.image
         patient.email = req.body.email || patient.email
         patient.gender = req.body.gender || patient.gender
         patient.age = req.body.age || patient.age
-        patient.allergies = req.body.allergies || patient.allergies
-        patient.note = req.body.note || patient.note
-        patient.profile = req.body.profile || patient.profile
-        patient.healthRecords = req.body.healthRecords || patient.healthRecords
+        patient.height = req.body.height || patient.height
+        patient.weight = req.body.weight || patient.weight
         patient.genotype = req.body.genotype || patient.genotype
         patient.isAdmin = req.body.isAdmin
   
@@ -208,13 +218,12 @@ const authPatient = asyncHandler(async (req, res) => {
         _id: updatedPatient._id,
         firstname: updatedPatient.firstname,
         lastname: updatedPatient.lastname,
+        age: updatedPatient.age,
         gender: updatedPatient.gender,
         genotype: updatedPatient.genotype,
         age: updatedPatient.age,
-        allergies: updatedPatient.allergies,
-        note: updatedPatient.note,
-        profile: updatedPatient.profile,
-        healthRecords: updatedPatient.healthRecords,
+        height: updatedPatient.height,
+        weight: updatedPatient.weight,
         isAdmin: updatedPatient.isAdmin,
       })
     } else {

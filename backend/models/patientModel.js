@@ -11,6 +11,10 @@ const patientSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -24,35 +28,33 @@ const patientSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    allergies: [
-        {
-            name: { type: String, required: true }
-        }
-    ],
-    note: [
-        {
-            name: { type: String, required: true }
-        }
-    ],
-    profile: {
-        address: { type: String, required: true},
-        city: { type: String, required: true},
-        height: { type: String, required: true},
-        weight: { type: String, required: true},
+    height:{
+        type: Number, 
+        required: true 
     },
-    healthRecords: [
-        {
-            date: { type: Date, required: true },
-            symptoms: { type: String, required: true },
-            diagnosis: { type: String, required: true },
-            prescription: { type: Number, required: true },
-            doctor: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-                ref: 'Doctor'
-            }
-        }
-    ],
+    weight: {
+        type: Number, 
+        required: true 
+    },
+    // profile: {
+    //     address: { type: String, required: true},
+    //     city: { type: String, required: true},
+    //     height: { type: String, required: true},
+    //     weight: { type: String, required: true},
+    // },
+    // healthRecords: [
+    //     {
+    //         date: { type: Date, required: true },
+    //         symptoms: { type: String, required: true },
+    //         diagnosis: { type: String, required: true },
+    //         prescription: { type: Number, required: true },
+    //         doctor: {
+    //             type: mongoose.Schema.Types.ObjectId,
+    //             required: true,
+    //             ref: 'Doctor'
+    //         }
+    //     }
+    // ],
     genotype: {
         type: String,
         required: true
