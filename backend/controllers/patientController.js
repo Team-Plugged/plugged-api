@@ -30,6 +30,38 @@ const authPatient = asyncHandler(async (req, res) => {
       throw new Error('Invalid email or password')
     }
   })
+
+
+
+// @desc    Find patient by email
+// @route   GET /api/patients/record
+// @access  Public
+const patientRecord = asyncHandler(async (req, res) => {
+  const { email } = req.body
+
+  const patient = await Patient.findOne({ email })
+
+  if (patient) {
+    res.json({
+      _id: patient._id,
+      firstname: patient.firstname,
+      lastname: patient.lastname,
+      image: patient.image,
+      email: patient.email,
+      gender: patient.gender,
+      age: patient.age,
+      height: patient.height,
+      weight: patient.weight,
+      genotype: patient.genotype,
+      isAdmin: patient.isAdmin,
+      token: generateToken(patient._id),
+    })
+  } else {
+    res.status(401)
+    throw new Error('Invalid email')
+  }
+})
+
   
   // @desc    Register a new patient
   // @route   POST /api/patients
@@ -241,4 +273,5 @@ const authPatient = asyncHandler(async (req, res) => {
     deletePatient,
     getPatientById,
     updatePatient,
+    patientRecord,
   }

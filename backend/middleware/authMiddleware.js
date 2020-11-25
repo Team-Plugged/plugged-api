@@ -15,7 +15,7 @@ const protect = asyncHandler(async (req, res, next) => {
             
             req.patient = await Patient.findById(decoded.id).select('-password')
 
-            req.doctor = await Doctor.findById(decoded.id).select('-password')
+            req.hospital = await Hospital.findById(decoded.id).select('-password')
 
             next()
         } catch (error) {

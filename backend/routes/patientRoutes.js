@@ -1,10 +1,12 @@
 import express from 'express'
 const router = express.Router()
-import { authPatient, deletePatient, getPatientById, getPatientProfile, registerPatient, updatePatient, updatePatientProfile } from '../controllers/patientController.js'
+import { authPatient, deletePatient, getPatientById, getPatientProfile, patientRecord, registerPatient, updatePatient, updatePatientProfile } from '../controllers/patientController.js'
 import { protect, patientAdmin } from '../middleware/authMiddleware.js'
 
 router.route('/').post(registerPatient).get(protect, patientAdmin, getPatientById)
 router.post('/login', authPatient)
+
+router.route('/record').get(patientRecord)
 router
   .route('/profile')
   .get(protect, getPatientProfile)
