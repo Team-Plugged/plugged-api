@@ -6,7 +6,7 @@ import { protect, patientAdmin } from '../middleware/authMiddleware.js'
 router.route('/').post(registerPatient).get(protect, patientAdmin, getPatientById)
 router.post('/login', authPatient)
 
-router.route('/record').get(patientRecord)
+router.route('/record').post(patientRecord)
 router
   .route('/profile')
   .get(protect, getPatientProfile)

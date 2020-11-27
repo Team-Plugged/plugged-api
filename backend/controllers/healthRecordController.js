@@ -46,7 +46,27 @@ const registerHealthRecord = asyncHandler(async (req, res) => {
 })
 
 
+ // @desc    Gets patient health record
+  // @route   POST /api/healthrecords/patient
+  // @access  Public
+  const patientHealthRecords = asyncHandler(async (req, res) => {
+    const { email } = req.body
+  
+    //const healthRecords = []
+    
+  
+    const healthRecords = await HealthRecord.find({ email }).populate('hospital', 'hospital email address')
+    if (healthRecords) {
+      res.json(healthRecords)
+    } else {
+      res.status(400)
+      throw new Error('No Health Record')
+    }
+    
+  })
+
 
 export {
     registerHealthRecord,
+    patientHealthRecords,
 }

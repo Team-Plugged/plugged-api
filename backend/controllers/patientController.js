@@ -18,9 +18,11 @@ const authPatient = asyncHandler(async (req, res) => {
         image: patient.image,
         email: patient.email,
         gender: patient.gender,
-        age: patient.age,
+        dateOfBirth: patient.dateOfBirth,
         height: patient.height,
         weight: patient.weight,
+        address: patient.address,
+        contactInfo: patient.contactInfo,
         genotype: patient.genotype,
         isAdmin: patient.isAdmin,
         token: generateToken(patient._id),
@@ -34,7 +36,7 @@ const authPatient = asyncHandler(async (req, res) => {
 
 
 // @desc    Find patient by email
-// @route   GET /api/patients/record
+// @route   POST /api/patients/record
 // @access  Public
 const patientRecord = asyncHandler(async (req, res) => {
   const { email } = req.body
@@ -49,12 +51,12 @@ const patientRecord = asyncHandler(async (req, res) => {
       image: patient.image,
       email: patient.email,
       gender: patient.gender,
-      age: patient.age,
+      dateOfBirth: patient.dateOfBirth,
       height: patient.height,
       weight: patient.weight,
+      address: patient.address,
+      contactInfo: patient.contactInfo,
       genotype: patient.genotype,
-      isAdmin: patient.isAdmin,
-      token: generateToken(patient._id),
     })
   } else {
     res.status(401)
@@ -73,9 +75,11 @@ const patientRecord = asyncHandler(async (req, res) => {
         image, 
         email, 
         gender,
-        age,
+        dateOfBirth,
         height,
         weight,
+        address,
+        contactInfo,
         genotype,
         password } = req.body
   
@@ -92,9 +96,11 @@ const patientRecord = asyncHandler(async (req, res) => {
         image, 
         email, 
         gender,
-        age,
+        dateOfBirth,
         height,
         weight,
+        address,
+        contactInfo,
         genotype,
         password,
     })
@@ -106,11 +112,12 @@ const patientRecord = asyncHandler(async (req, res) => {
         lastname: patient.lastname,
         image: patient.image,
         gender: patient.gender,
-        age: patient.age,
+        dateOfBirth: patient.dateOfBirth,
         height: patient.height,
         weight: patient.weight,
+        address: patient.address,
+        contactInfo: patient.contactInfo,
         genotype: patient.genotype,
-        email: patient.email,
         isAdmin: patient.isAdmin,
         token: generateToken(patient._id),
       })
@@ -134,9 +141,11 @@ const patientRecord = asyncHandler(async (req, res) => {
         image: patient.image,
         email: patient.email,
         gender: patient.gender,
-        age: patient.age,
+        dateOfBirth: patient.dateOfBirth,
         height: patient.height,
         weight: patient.weight,
+        address: patient.address,
+        contactInfo: patient.contactInfo,
         genotype: patient.genotype,
         isAdmin: patient.isAdmin,
       })
@@ -158,9 +167,11 @@ const patientRecord = asyncHandler(async (req, res) => {
       patient.image = req.body.image || patient.image
       patient.email = req.body.email || patient.email
       patient.gender = req.body.gender || patient.gender
-      patient.age = req.body.age || patient.age
+      patient.dateOfBirth = req.body.dateOfBirth || patient.dateOfBirth
       patient.height = req.body.height || patient.height
       patient.weight = req.body.weight || patient.weight
+      patient.address = req.body.address || patient.address
+      patient.contactInfo = req.body.contactInfo || patient.contactInfo
       patient.genotype = req.body.genotype || patient.genotype
 
 
@@ -177,9 +188,11 @@ const patientRecord = asyncHandler(async (req, res) => {
         image: updatedPatient.image,
         gender: updatedPatient.gender,
         genotype: updatedPatient.genotype,
-        age: updatedPatient.age,
+        dateOfBirth: updatedPatient.dateOfBirth,
         height: updatedPatient.height,
         weight: updatedPatient.weight,
+        address: updatedPatient.address,
+        contactInfo: updatedPatient.contactInfo,
         isAdmin: updatedPatient.isAdmin,
         token: generateToken(updatedPatient._id),
       })
@@ -238,9 +251,11 @@ const patientRecord = asyncHandler(async (req, res) => {
         patient.image = req.body.image || patient.image
         patient.email = req.body.email || patient.email
         patient.gender = req.body.gender || patient.gender
-        patient.age = req.body.age || patient.age
+        patient.dateOfBirth = req.body.dateOfBirth || patient.dateOfBirth
         patient.height = req.body.height || patient.height
         patient.weight = req.body.weight || patient.weight
+        patient.address = req.body.address || patient.address
+        patient.contactInfo = req.body.contactInfo || patient.contactInfo
         patient.genotype = req.body.genotype || patient.genotype
         patient.isAdmin = req.body.isAdmin
   
@@ -253,9 +268,11 @@ const patientRecord = asyncHandler(async (req, res) => {
         age: updatedPatient.age,
         gender: updatedPatient.gender,
         genotype: updatedPatient.genotype,
-        age: updatedPatient.age,
+        dateOfBirth: updatedPatient.dateOfBirth,
         height: updatedPatient.height,
         weight: updatedPatient.weight,
+        address: updatedPatient.address,
+        contactInfo: updatedPatient.contactInfo,
         isAdmin: updatedPatient.isAdmin,
       })
     } else {

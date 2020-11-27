@@ -24,8 +24,8 @@ const patientSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    age: {
-        type: Number,
+    dateOfBirth: {
+        type: Date,
         required: true
     },
     height:{
@@ -36,25 +36,15 @@ const patientSchema = mongoose.Schema({
         type: Number, 
         required: true 
     },
-    // profile: {
-    //     address: { type: String, required: true},
-    //     city: { type: String, required: true},
-    //     height: { type: String, required: true},
-    //     weight: { type: String, required: true},
-    // },
-    // healthRecords: [
-    //     {
-    //         date: { type: Date, required: true },
-    //         symptoms: { type: String, required: true },
-    //         diagnosis: { type: String, required: true },
-    //         prescription: { type: Number, required: true },
-    //         doctor: {
-    //             type: mongoose.Schema.Types.ObjectId,
-    //             required: true,
-    //             ref: 'Doctor'
-    //         }
-    //     }
-    // ],
+    address: {
+        type: String, 
+        required: true 
+    },
+    contactInfo: {
+        type: String, 
+        required: true 
+    },
+  
     genotype: {
         type: String,
         required: true
