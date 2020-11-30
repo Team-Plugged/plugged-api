@@ -47,15 +47,15 @@ const registerHealthRecord = asyncHandler(async (req, res) => {
 
 
  // @desc    Gets patient health record
-  // @route   POST /api/healthrecords/patient
+  // @route   GET /api/healthrecords/patient
   // @access  Public
   const patientHealthRecords = asyncHandler(async (req, res) => {
-    const { email } = req.body
+    //const { email } = req.body
   
     //const healthRecords = []
     
   
-    const healthRecords = await HealthRecord.find({ email }).populate('hospital', 'hospital email address')
+    const healthRecords = await HealthRecord.find({}).populate('hospital', 'hospital email address')
     if (healthRecords) {
       res.json(healthRecords)
     } else {

@@ -3,7 +3,6 @@ import { patientHealthRecords, registerHealthRecord } from '../controllers/healt
 const router = express.Router()
 import { protect, hospitalVerified, hospitalAdmin } from '../middleware/authMiddleware.js'
 
-router.route('/').post(protect, registerHealthRecord)
-router.route('/patient').post(protect, patientHealthRecords)
+router.route('/').post(protect, registerHealthRecord).get(patientHealthRecords)
 
 export default router
