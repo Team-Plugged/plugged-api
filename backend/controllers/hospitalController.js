@@ -29,6 +29,7 @@ const authHospital = asyncHandler(async (req, res) => {
   // @desc    Register a new hospital
   // @route   POST /api/hospitals
   // @access  Public
+  
   const registerHospital = asyncHandler(async (req, res) => {
     const { 
         hospital, 

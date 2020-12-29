@@ -1,6 +1,8 @@
 import path from 'path'
 import express from 'express'
 import cors from 'cors'
+import swaggerJsDoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui-express'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
@@ -19,6 +21,7 @@ connectDB()
 const app = express()
 
 app.use(cors())
+
 
 app.use(express.json())
 
